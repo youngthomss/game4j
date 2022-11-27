@@ -8,9 +8,12 @@ struct Case{
 };
 
 ptrCase** genererMat(int taille){
-    ptrCase** mat = malloc(taille*sizeof*mat);
-    for(int i=0;i<taille;i++)
-        mat[i]=malloc(taille * sizeof(mat[i]));
+    ptrCase** mat = (ptrCase**)malloc(taille*sizeof*mat);
+    for(int i=0;i<taille;i++){
+        mat[i] = (ptrCase*)malloc(taille*sizeof(mat[i]));
+        for(int j=0;j<taille;j++)
+            mat[i][j] = malloc(sizeof(mat[i][j]));
+    }
     return mat;
 }
 
@@ -24,9 +27,11 @@ void terrainMatrice(ptrCase** mat, int taille){
             else if (chance >= 60 && chance < 80)
                 mat[i][j]->terrain = -1; //Obstacle
             else if (chance >= 80)
-                mat[i][j]->terrain = 1; //Bonus
+                mat[i][j]->terrain = 1; //Bonus   
         }
     }
+    mat[0][0]->terrain=0;
+    mat[taille-1][taille-1]->terrain=0;
 }
 
 void afficheGrille(ptrCase** mat, int taille){
@@ -42,7 +47,7 @@ void afficheGrille(ptrCase** mat, int taille){
         }
         printf("%d :|",i);
         for(int j=0; j<taille; j++)
-            printf("%d|",mat[i][j]->terrain);            
+            printf(" d|",mat[i][j]->terrain);            
         printf("\n");
     }
 }
@@ -56,5 +61,5 @@ int main (){
     ptrCase** carte ;
     carte = genererMat(taille);
     terrainMatrice(carte, taille);
-    afficheGrille(carte, taille);
+    //afficheGrille(carte, taille);
 }
