@@ -2,28 +2,23 @@
 #include <stdlib.h>
 #include "generation.h"
 
-struct Case{
-    int terrain;
-    // déclaration Case/Arrete 
-};
-
-ptrCase** genererMat(int taille){
-    ptrCase** mat = (ptrCase**)malloc(taille*sizeof*mat);
+ptrSection** genererMat(int taille){
+    ptrSection** mat = (ptrSection**)malloc(taille*sizeof*mat);
     for(int i=0;i<taille;i++){
-        mat[i] = (ptrCase*)malloc(taille*sizeof(mat[i]));
+        mat[i] = (ptrSection*)malloc(taille*sizeof(mat[i]));
         for(int j=0;j<taille;j++)
             mat[i][j] = malloc(sizeof(mat[i][j]));
     }
     return mat;
 }
 
-void terrainMatrice(ptrCase** mat, int taille){
+void terrainMatrice(ptrSection** mat, int taille){
     int chance;
     for(int i=0;i<taille;i++){
         for(int j=0;j<taille;j++){
             chance = rand()%100;
             if(chance < 60)
-                mat[i][j]->terrain = 0; //case vide
+                mat[i][j]->terrain = 0; //Section vide
             else if (chance >= 60 && chance < 80)
                 mat[i][j]->terrain = -1; //Obstacle
             else if (chance >= 80)
@@ -34,7 +29,7 @@ void terrainMatrice(ptrCase** mat, int taille){
     mat[taille-1][taille-1]->terrain=0;
 }
 
-void afficheGrille(ptrCase** mat, int taille){
+void afficheGrille(ptrSection** mat, int taille){
     for(int i=0; i<taille; i++){
         for(int j=0; j<taille; j++){
             if(i == 0){
@@ -47,7 +42,7 @@ void afficheGrille(ptrCase** mat, int taille){
         }
         printf("%d :|",i);
         for(int j=0; j<taille; j++)
-            printf(" d|",mat[i][j]->terrain);            
+            printf(" %d|",mat[i][j]->terrain);            
         printf("\n");
     }
 }
@@ -58,8 +53,8 @@ int main (){
     scanf("%d", &taille);
     fflush;
     //printf("\n%d\n",taille);
-    ptrCase** carte ;
+    ptrSection** carte ;
     carte = genererMat(taille);
     terrainMatrice(carte, taille);
-    //afficheGrille(carte, taille);
+    afficheGrille(carte, taille);
 }
