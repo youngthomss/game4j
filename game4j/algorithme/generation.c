@@ -46,15 +46,3 @@ void afficheGrille(ptrSection** mat, int taille){
         printf("\n");
     }
 }
-
-int main (){
-    int taille;
-    printf("taille de la carte : ");
-    scanf("%d", &taille);
-    fflush;
-    //printf("\n%d\n",taille);
-    ptrSection** carte ;
-    carte = genererMat(taille);
-    terrainMatrice(carte, taille);
-    afficheGrille(carte, taille);
-}

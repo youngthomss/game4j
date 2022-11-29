@@ -9,6 +9,7 @@ typedef struct Arrete* ptrArrete;
 struct Section {
     int x;
     int y;
+    int terrain;
     ptrArrete arretes;
 };
 
