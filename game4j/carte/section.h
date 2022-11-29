@@ -10,7 +10,7 @@ struct Section {
     int x;
     int y;
     int terrain;
-    ptrArrete arretes;
+    ptrArrete arretes[];
 };
 
 struct Arrete {

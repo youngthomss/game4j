@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "./algorithme/generation.h"
+#include "./carte/arbre.h"
 
 /*
 Affichage pour les tests
@@ -20,17 +20,18 @@ void afficherArrete(ptrArrete arrete) {
 
 
 int main() {
+    const int taille = 5;
     ptrSection s = creerSection(2, 2);
-    ptrArrete a = creerArrete(s, 5);
-    afficherSection(s);
-    afficherArrete(a);
-    int taille;
-    printf("\ntaille de la carte : ");
-    scanf("%d", &taille);
-    fflush;
+    //printf("\ntaille de la carte : ");
+    //scanf("%d", &taille);
+    //fflush;
     ptrSection** carte ;
     carte = genererMat(taille);
     terrainMatrice(carte, taille);
-    afficheGrille(carte, taille);
+    afficheGrille(carte,taille);
+    int ** test= construireMatrice(carte,taille);
+    int t2=taille*taille;
+    afficherMatriceV2(construireMatrice(carte,taille),t2);
+    
     return 0;
 }
