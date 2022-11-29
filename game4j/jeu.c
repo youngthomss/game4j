@@ -15,7 +15,7 @@ void afficherSection(ptrSection section) {
 void afficherArrete(ptrArrete arrete) {
     printf("--- Arrete ---\n");
     afficherSection(arrete->section);
-    printf("Poids = %d", arrete->poids);
+    printf("Distance = %d", arrete->distance);
 }
 
 

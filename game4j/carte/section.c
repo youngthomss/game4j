@@ -11,9 +11,9 @@ ptrSection creerSection(int x, int y) {
 }
 
 
-ptrArrete creerArrete(ptrSection sections, int poids) {
+ptrArrete creerArrete(ptrSection sections, int distance) {
     int size = sizeof(arrete);
     ptrArrete arrete = malloc(size);
     arrete->section = sections;
-    arrete->poids = poids;
+    arrete->distance = distance;
 }

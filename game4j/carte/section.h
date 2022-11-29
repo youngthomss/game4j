@@ -14,9 +14,9 @@ struct Section {
 
 struct Arrete {
     ptrSection section; 
-    int poids;
+    int distance;
 };
 
 
 ptrSection creerSection(int x, int y);
-ptrArrete creerArrete(ptrSection sections, int poids);
+ptrArrete creerArrete(ptrSection sections, int distance);
