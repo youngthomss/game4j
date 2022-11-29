@@ -1,22 +1,23 @@
 CC=gcc  #compiler
-TARGET=banque #target file name
+TARGET=jeu #target file name
+PATH_CARTE=./game4j/carte/
  
 all: jeu clean exec
 
-jeu : main.o compte.o client.o
-	$(CC) main.o compte.o client.o -o $(TARGET)
+jeu : jeu.o carte.o section.o 
+	$(CC) carte.o section.o jeu.o -o ./bin/$(TARGET)
 
-main.o : main.c
-	$(CC) -c main.c -o main.o
+jeu.o : ./game4j/jeu.c
+	$(CC) -c ./game4j/jeu.c -o jeu.o
 
-compte.o : compte.c compte.h
-	$(CC) -c compte.c -o compte.o
+carte.o : $(PATH_CARTE)carte.c $(PATH_CARTE)carte.h
+	$(CC) -c $(PATH_CARTE)carte.c -o carte.o
 
-client.o : client.c client.h
-	$(CC) -c client.c -o client.o
+section.o : $(PATH_CARTE)section.c $(PATH_CARTE)section.h
+	$(CC) -c $(PATH_CARTE)section.c -o section.o
 
 clean:
 	rm *.o
 
 exec :
-	./$(TARGET)
+	./bin/$(TARGET)
