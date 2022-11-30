@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "./algorithme/generation.h"
-#include "./algorithme/generation.c"
-#include "./carte/section.h"
-#include "./carte/section.c"
 
 /*
 Affichage pour les tests
@@ -31,7 +28,6 @@ int main() {
     printf("\ntaille de la carte : ");
     scanf("%d", &taille);
     fflush;
-    //printf("\n%d\n",taille);
     ptrSection** carte ;
     carte = genererMat(taille);
     terrainMatrice(carte, taille);
