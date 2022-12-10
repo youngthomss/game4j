@@ -7,7 +7,7 @@ PATH_ALGORITHME=./game4j/algorithme/
 all: jeu clean exec
 
 jeu : jeu.o carte.o section.o generation.o 
-	$(CC) carte.o section.o jeu.o generation.o -o ./bin/$(TARGET)
+	$(CC) carte.o section.o jeu.o generation.o -o $(TARGET)
 
 jeu.o : ./game4j/jeu.c
 	$(CC) -c ./game4j/jeu.c -o jeu.o
@@ -28,5 +28,5 @@ clean:
 	rm *.o
 
 exec :
-	./bin/$(TARGET)
-	rm -rf ./bin/*
+	./$(TARGET)
+	rm -rf $(TARGET)
