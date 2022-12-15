@@ -12,19 +12,13 @@ void afficherSection(ptrSection section) {
     printf("y = %d\n", section->y);
 }
 
-void afficherArrete(ptrArrete arrete) {
-    printf("--- Arrete ---\n");
-    afficherSection(arrete->section);
-    printf("Distance = %d", arrete->distance);
-}
-
 
 int main() {
-    const int taille = 5;
     ptrSection s = creerSection(2, 2);
-    //printf("\ntaille de la carte : ");
-    //scanf("%d", &taille);
-    //fflush;
+    printf("\ntaille de la carte : ");
+    int taille;
+    scanf("%d", &taille);
+    fflush;
     ptrSection** carte ;
     carte = genererMat(taille);
     terrainMatrice(carte, taille);

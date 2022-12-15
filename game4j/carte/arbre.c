@@ -1,8 +1,6 @@
 #include "arbre.h"
 #include"string.h"
-/*
-voir pour les différentes possibilités de distance 
-*/
+#include "time.h"
 
 int convertCaseToInt(int x, int y, int taille){
     return x*taille+y;
@@ -11,7 +9,7 @@ int convertCaseToInt(int x, int y, int taille){
 void afficherMatriceV2(int** mat,int taille1){
     for(int i=0;i<taille1;i++){
         for(int j=0;j<taille1;j++){
-            printf("%d",mat[i][j]);
+            printf("%d ",mat[i][j]);
         }
         printf("\n");
     }

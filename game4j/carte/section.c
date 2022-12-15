@@ -9,13 +9,3 @@ ptrSection creerSection(int x, int y) {
 
     return c;
 }
-
-
-
-ptrArrete creerArrete(ptrSection sections, int distance) {
-    int size = sizeof(arrete);
-    ptrArrete arrete = malloc(size);
-    arrete->section = sections;
-    arrete->distance = distance;
-    return arrete;
-}
