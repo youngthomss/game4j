@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "./carte/arbre.h"
+#include "arbre.h"
 #include "generation.h"
 
 /*
