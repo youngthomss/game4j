@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "arbre.h"
+#include "utils.h"
 #include "generation.h"
 
 /*
