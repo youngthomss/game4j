@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "./carte/arbre.h"
+#include "arbre.h"
+#include "generation.h"
 
 /*
 Affichage pour les tests
@@ -18,7 +19,6 @@ int main() {
     printf("\ntaille de la carte : ");
     int taille;
     scanf("%d", &taille);
-    fflush;
     ptrSection** carte ;
     carte = genererMat(taille);
     terrainMatrice(carte, taille);
@@ -26,6 +26,6 @@ int main() {
     int ** test= construireMatrice(carte,taille);
     int t2=taille*taille;
     afficherMatriceV2(construireMatrice(carte,taille),t2);
-    
+
     return 0;
 }

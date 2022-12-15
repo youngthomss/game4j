@@ -1,4 +1,5 @@
-#include "deplacement.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <ncurses.h>
 enum direction {
   HAUT = 1,

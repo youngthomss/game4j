@@ -1,34 +1,44 @@
-CC=gcc  #compiler
-TARGET=jeu #target file name
-PATH_CARTE=./game4j/carte/
-PATH_ALGORITHME=./game4j/algorithme/
+# Thanks to Job Vranish (https://spin.atomicobject.com/2016/08/26/makefile-c-projects/)
+TARGET_EXEC := game4j
+CC := gcc
+BUILD_DIR := ./build
+SRC_DIRS := ./src
 
- 
-all: jeu clean exec
+# Find all the C and C++ files we want to compile
+# Note the single quotes around the * expressions. Make will incorrectly expand these otherwise.
+SRCS := $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c' -or -name '*.s')
 
-jeu : jeu.o carte.o section.o generation.o arbre.o
-	$(CC) carte.o section.o jeu.o generation.o arbre.o -o $(TARGET)
+# String substitution for every C/C++ file.
+# As an example, hello.cpp turns into ./build/hello.cpp.o
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 
-jeu.o : ./game4j/jeu.c
-	$(CC) -c ./game4j/jeu.c -o jeu.o
+# String substitution (suffix version without %).
+# As an example, ./build/hello.cpp.o turns into ./build/hello.cpp.d
+DEPS := $(OBJS:.o=.d)
 
-carte.o : $(PATH_CARTE)carte.c $(PATH_CARTE)carte.h
-	$(CC) -c $(PATH_CARTE)carte.c -o carte.o
+# Every folder in ./src will need to be passed to GCC so that it can find header files
+INC_DIRS := include
+# Add a prefix to INC_DIRS. So moduleA would become -ImoduleA. GCC understands this -I flag
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-section.o : $(PATH_CARTE)section.c $(PATH_CARTE)section.h
-	$(CC) -c $(PATH_CARTE)section.c -o section.o
+# The -MMD and -MP flags together generate Makefiles for us!
+# These files will have .d instead of .o as the output.
+CPPFLAGS := $(INC_FLAGS) -MMD -MP
 
-arbre.o : $(PATH_CARTE)arbre.c $(PATH_CARTE)arbre.h
-	$(CC) -c $(PATH_CARTE)arbre.c -o arbre.o
+# The final build step.
+$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
+	$(CC) $(OBJS) -o $@ $(LDFLAGS)
 
-generation.o : $(PATH_ALGORITHME)generation.c $(PATH_ALGORITHME)generation.h
-	$(CC) -c $(PATH_ALGORITHME)generation.c -o generation.o
+# Build step for C source
+$(BUILD_DIR)/%.c.o: %.c
+	mkdir -p $(dir $@)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-djikstra.o : $(PATH_ALGORITHME)djikstra.c $(PATH_ALGORITHME)djikstra.h
-	$(CC) -c $(PATH_ALGORITHME)djikstra.c -o djikstra.o
-
+.PHONY: clean
 clean:
-	rm *.o
+	rm -r $(BUILD_DIR)
 
-exec :
-	./$(TARGET)
+# Include the .d makefiles. The - at the front suppresses the errors of missing
+# Makefiles. Initially, all the .d files will be missing, and we don't want those
+# errors to show up.
+-include $(DEPS)
