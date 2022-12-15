@@ -16,6 +16,8 @@ void terrainMatrice(ptrSection** mat, int taille){
     int chance;
     for(int i=0;i<taille;i++){
         for(int j=0;j<taille;j++){
+            mat[i][j]->x=i;
+            mat[i][j]->y=j;           
             chance = rand()%100;
             if(chance < 60)
                 mat[i][j]->terrain = 0; //Section vide
