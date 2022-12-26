@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "generation.h"
+#include "../include/generation.h"
 
 ptrSection** genererMat(int taille){
     ptrSection** mat = (ptrSection**)malloc(taille*sizeof*mat);
