@@ -1,4 +1,6 @@
-#include "deplacement.h"
+#include "../include/deplacement.h"
+#include <ncurses.h>  
+
 
 void initStructureFenetre() {
   initscr(); // Initialise la structure WINDOW et autres paramètres
