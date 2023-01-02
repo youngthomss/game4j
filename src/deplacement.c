@@ -1,4 +1,6 @@
-#include "deplacement.h"
+#include "../include/deplacement.h"
+#include <ncurses.h>  
+
 
 void initStructureFenetre() {
   initscr(); // Initialise la structure WINDOW et autres paramètres
@@ -9,7 +11,6 @@ void initStructureFenetre() {
 WINDOW *creerFenetre(int longueur, int largeur, int x, int y) {
   // Creer une fenetre pour l'input
   WINDOW *fenetre = newwin(longueur, largeur, x, y);
-  box(fenetre, 0, 0);
   refresh();
   wrefresh(fenetre);
 
@@ -18,7 +19,6 @@ WINDOW *creerFenetre(int longueur, int largeur, int x, int y) {
 
 void redessinerFenetre(WINDOW *fenetre) {
   werase(fenetre);
-  box(fenetre, 0, 0);
   wrefresh(fenetre);
 }
 
