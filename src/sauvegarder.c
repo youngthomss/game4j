@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/sauvegarder.h"
+#include "sauvegarder.h"
 /*#include "section.c"
 #include "arbre.c"
 #include "generation.c"*/

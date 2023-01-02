@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/arbre.h"
-#include "../include/generation.h"
-#include "../include/sauvegarder.h"
-#include "../include/section.h"
-#include "section.c"
-#include "arbre.c"
-#include "generation.c"
-#include "sauvegarder.c"
+#include "arbre.h"
+#include "generation.h"
+#include "sauvegarder.h"
+#include "section.h"
+#include "arbre.h"
+#include "generation.h"
+#include "sauvegarder.h"
 /*
 Affichage pour les tests
 Sections à ajouter dans une grille

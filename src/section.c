@@ -1,4 +1,4 @@
-#include "../include/section.h"
+#include "section.h"
 
 
 ptrSection creerSection(int x, int y) {
