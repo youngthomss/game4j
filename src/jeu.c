@@ -59,11 +59,11 @@ int main() {
   //   traiterDeplacement(fenetre, input, carte, j);
   // }
   ptrSection** m1;
-  m1= genererMat(5);
-  terrainMatrice(m1, 5);
+  m1= genererMat(18);
+  terrainMatrice(m1, 18);
   initStructureFenetre();
   creerFenetre(20, 50, 10, 20);
-  afficheGrilleNcurses(fenetre,m1,5);
+  afficheGrilleNcurses(fenetre,m1,18);
   wrefresh(fenetre);
   getch();
   endwin();
