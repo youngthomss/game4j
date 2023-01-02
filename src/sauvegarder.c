@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sauvegarder.h"
-/*#include "section.c"
-#include "arbre.c"
-#include "generation.c"*/
 
 
 void NomSauvegarde(char* chemin){
@@ -51,31 +48,3 @@ void ouvrirFichier(partie info, ptrSection** carte, int** arbre, int taille){
     }
     fclose(Sauvegarde);
 }
-/*
-int main(){
-    partie game;
-    int taille =10;
-    int t2=taille*taille;
-    ptrSection** carte ;
-    carte = genererMat(taille);
-    terrainMatrice(carte, taille);
-    afficheGrille(carte, taille);
-    int ** arbretest=construireMatrice(carte,taille);
-    for(int i = 0;i<t2;i++){
-        for(int j=0;j<t2;j++)
-        arbretest[i][j]=0;
-    }
-    int ** test= construireMatrice(carte,taille);
-    afficherMatriceV2(test,t2);
-    afficherMatriceV2(arbretest,t2);
-    //NomSauvegarde(game.chemin);
-    nouvellePartie(game.nomPartie,game.chemin);
-    printf("%s\n",game.chemin);
-    ptrSection ** cartetest = genererMat(taille);
-    CreerFichierSauvegarde(game, carte, test, taille);
-    printf("Vali\n");
-    ouvrirFichier(game, cartetest, arbretest, taille);
-    printf("Vali2\n");
-    afficheGrille(cartetest, taille);
-    afficherMatriceV2(arbretest,t2);
-}*/
