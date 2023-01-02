@@ -13,3 +13,4 @@ typedef struct Joueur {
 } Joueur;
 
 void afficheGrilleNcurses(WINDOW* fenetre, ptrSection** mat, int taille);
+void initPlayer(Joueur joueur);

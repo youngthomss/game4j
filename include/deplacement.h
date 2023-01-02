@@ -14,10 +14,6 @@
 #define Y 10
 
 enum direction {
-  HAUT = 1,
-  DROITE = 2,
-  BAS = 3,
-  GAUCHE = 3,
   PAVE_HAUT = '8',
   PAVE_DROIT = '6',
   PAVE_BAS = '2',
@@ -32,5 +28,4 @@ void initStructureFenetre();
 WINDOW *creerFenetre(int longueur, int largeur, int x, int y);
 void redessinerFenetre(WINDOW *fenetre);
 bool deplacementValide(ptrSection **mat, int input, Joueur joueur);
-void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
-                        Joueur joueur);
+void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,Joueur joueur);

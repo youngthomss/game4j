@@ -86,8 +86,6 @@ void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
     if (deplacementValide(mat, input, joueur)) {
       joueur.position.row -= 1;
       printf("%d", joueur.position.row);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en haut");
       wrefresh(fenetre);
     };
     break;
@@ -96,8 +94,6 @@ void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
     if (deplacementValide(mat, input, joueur)) {
       joueur.position.col += 1;
       printf("%d", joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces à droite");
       wrefresh(fenetre);
     };
     break;
@@ -106,8 +102,6 @@ void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
     if (deplacementValide(mat, input, joueur)) {
       joueur.position.row += 1;
       printf("%d", joueur.position.row);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en bas");
       wrefresh(fenetre);
     };
     break;
@@ -116,8 +110,6 @@ void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
     if (deplacementValide(mat, input, joueur)) {
       joueur.position.col -= 1;
       printf("%d", joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces à gauche");
       wrefresh(fenetre);
     };
     break;
@@ -127,8 +119,6 @@ void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
       joueur.position.col += 1;
       joueur.position.row -= 1;
       printf("row = %d and col = %d", joueur.position.col, joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en haut à droite");
       wrefresh(fenetre);
     };
     break;
@@ -138,8 +128,6 @@ void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
       joueur.position.col -= 1;
       joueur.position.row -= 1;
       printf("row = %d and col = %d", joueur.position.col, joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en haut à gauche");
       wrefresh(fenetre);
     };
     break;
@@ -149,8 +137,6 @@ void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
       joueur.position.col += 1;
       joueur.position.row += 1;
       printf("row = %d and col = %d", joueur.position.col, joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en bas à droite");
       wrefresh(fenetre);
     };
     break;
@@ -160,15 +146,12 @@ void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
       joueur.position.col -= 1;
       joueur.position.row += 1;
       printf("row = %d and col = %d", joueur.position.col, joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en bas à gauche");
       wrefresh(fenetre);
     };
     break;
     break;
 
   default:
-    redessinerFenetre(fenetre);
     mvwprintw(fenetre, 10, 15, "Erreur, choisissez une bonne direction");
     wrefresh(fenetre);
     break;

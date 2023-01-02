@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <joueur.h>
 /* Structure Partie:  permet de stocker les paramètres d'une partie           */
 typedef struct partie {
     int     L; // le nb de lignes du plateau de jeu
