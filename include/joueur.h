@@ -1,12 +1,10 @@
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include "position.h"
 
 typedef struct Joueur {
-    Position row, col;
+    Position position;
     int Energie;
 
-}
-#endif
+} Joueur;
