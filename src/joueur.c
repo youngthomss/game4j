@@ -1,6 +1,6 @@
-#include "../include/joueur.h"
-#include "../include/deplacement.h"
-#include "../include/generation.h"
+#include "joueur.h"
+#include "deplacement.h"
+#include "generation.h"
 #include <curses.h>
 #include <ncurses.h>
 #include <stdio.h>
