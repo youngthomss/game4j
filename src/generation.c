@@ -13,6 +13,7 @@ ptrSection** genererMat(int taille){
 }
 
 void terrainMatrice(ptrSection** mat, int taille){
+    srand(time(NULL));
     int chance;
     for(int i=0;i<taille;i++){
         for(int j=0;j<taille;j++){
