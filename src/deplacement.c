@@ -1,176 +1,110 @@
-#include "../include/deplacement.h"
-#include <ncurses.h>  
+#include "deplacement.h"
 
-
-void initStructureFenetre() {
-  initscr(); // Initialise la structure WINDOW et autres paramètres
-  noecho();
-  curs_set(0);
-}
-
-WINDOW *creerFenetre(int longueur, int largeur, int x, int y) {
-  // Creer une fenetre pour l'input
-  WINDOW *fenetre = newwin(longueur, largeur, x, y);
-  refresh();
-  wrefresh(fenetre);
-
-  return fenetre;
-}
-
-void redessinerFenetre(WINDOW *fenetre) {
-  werase(fenetre);
-  wrefresh(fenetre);
-}
-
-bool deplacementValide(ptrSection **mat, int input, Joueur joueur) {
-  // En fonction de la touche entrée par l'utilisateur,
-  // on vérifie si le déplacement est valide, réalisable
-  switch (input) {
-  // Déplacement vers le haut :
-  case PAVE_HAUT:
-    if (mat[joueur.position.row - 1][joueur.position.col]->terrain != -1) {
+bool deplacementValide(ptrSection **carte, int deplacementSuivantRow, int deplacementSuivantCol, int taille) {
+  if (deplacementSuivantRow < taille && deplacementSuivantCol < taille && deplacementSuivantRow >= 0 && deplacementSuivantCol >= 0) {
+    if (carte[deplacementSuivantRow][deplacementSuivantCol]->terrain != -1) {
       return true;
     }
-    break;
-  // Déplacement à droite :
-  case PAVE_DROIT:
-    if (mat[joueur.position.row][joueur.position.col + 1]->terrain != -1) {
-      return true;
-    }
-    break;
-  // Déplacement vers le bas :
-  case PAVE_BAS:
-    if (mat[joueur.position.row + 1][joueur.position.col]->terrain != -1) {
-      return true;
-    }
-    break;
-  // Déplacement à gauche :
-  case PAVE_GAUCHE:
-    if (mat[joueur.position.row][joueur.position.col - 1]->terrain != -1) {
-      return true;
-    }
-    break;
-  // Déplacement en haut à droite :
-  case PAVE_HAUT_DROIT:
-    if (mat[joueur.position.row - 1][joueur.position.col + 1]->terrain != -1) {
-      return true;
-    }
-    break;
-  // Déplacement en haut à gauche :
-  case PAVE_HAUT_GAUCHE:
-    if (mat[joueur.position.row - 1][joueur.position.col - 1]->terrain != -1) {
-      return true;
-    }
-    break;
-  // Déplacement en bas à droite :
-  case PAVE_BAS_DROIT:
-    if (mat[joueur.position.row + 1][joueur.position.col + 1]->terrain != -1) {
-      return true;
-    }
-    break;
-  // Déplacement en bas à gauche :
-  case PAVE_BAS_GAUCHE:
-    if (mat[joueur.position.row + 1][joueur.position.col - 1]->terrain != -1) {
-      return true;
-    }
-    break;
   }
   return false;
 }
 
-void traiterDeplacement(WINDOW *fenetre, int input, ptrSection **mat,
-                        Joueur joueur) {
-  switch (input) {
+void deplacerJoueur(ptrSection **carte, ptrJoueur joueur, int ancienRow, int ancienCol) {
+  carte[ancienRow][ancienCol]->terrain = 0;
+  if (carte[joueur->position->row][joueur->position->col]->terrain == 1) {
+    joueur->energie += 2;
+    printf("Bonus : +1 énergie !\n");
+  }
+
+  carte[joueur->position->row][joueur->position->col]->terrain = 2;
+  joueur->energie -= 1;
+}
+
+void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, int taille) {
+  int ancienRow = joueur->position->row;
+  int ancienCol = joueur->position->col;
+  int deplacementSuivantRow;
+  int deplacementSuivantCol;
+
+  switch (deplacement) {
 
   case PAVE_HAUT:
-    if (deplacementValide(mat, input, joueur)) {
-      joueur.position.row -= 1;
-      printf("%d", joueur.position.row);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en haut");
-      wrefresh(fenetre);
-    };
+    deplacementSuivantCol = joueur->position->col;
+    deplacementSuivantRow = joueur->position->row - 1;
+    if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
+      joueur->position->row -= 1;
+      deplacerJoueur(carte, joueur, ancienRow, ancienCol);
+    }
     break;
 
   case PAVE_DROIT:
-    if (deplacementValide(mat, input, joueur)) {
-      joueur.position.col += 1;
-      printf("%d", joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces à droite");
-      wrefresh(fenetre);
-    };
+    deplacementSuivantCol = joueur->position->col + 1;
+    deplacementSuivantRow = joueur->position->row;
+    if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
+      joueur->position->col += 1;
+      deplacerJoueur(carte, joueur, ancienRow, ancienCol);
+    }
     break;
 
   case PAVE_BAS:
-    if (deplacementValide(mat, input, joueur)) {
-      joueur.position.row += 1;
-      printf("%d", joueur.position.row);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en bas");
-      wrefresh(fenetre);
-    };
+    deplacementSuivantCol = joueur->position->col;
+    deplacementSuivantRow = joueur->position->row + 1;
+    if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
+      joueur->position->row += 1;
+      deplacerJoueur(carte, joueur, ancienRow, ancienCol);
+    }
     break;
 
   case PAVE_GAUCHE:
-    if (deplacementValide(mat, input, joueur)) {
-      joueur.position.col -= 1;
-      printf("%d", joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces à gauche");
-      wrefresh(fenetre);
-    };
+    deplacementSuivantCol = joueur->position->col -1;
+    deplacementSuivantRow = joueur->position->row;
+    if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
+      joueur->position->col -= 1;
+      deplacerJoueur(carte, joueur, ancienRow, ancienCol);
+    }
     break;
 
   case PAVE_HAUT_DROIT:
-    if (deplacementValide(mat, input, joueur)) {
-      joueur.position.col += 1;
-      joueur.position.row -= 1;
-      printf("row = %d and col = %d", joueur.position.col, joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en haut à droite");
-      wrefresh(fenetre);
-    };
+    deplacementSuivantCol = joueur->position->col + 1;
+    deplacementSuivantRow = joueur->position->row - 1;
+    if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
+      joueur->position->col += 1;
+      joueur->position->row -= 1;      
+      deplacerJoueur(carte, joueur, ancienRow, ancienCol);
+    }
     break;
 
   case PAVE_HAUT_GAUCHE:
-    if (deplacementValide(mat, input, joueur)) {
-      joueur.position.col -= 1;
-      joueur.position.row -= 1;
-      printf("row = %d and col = %d", joueur.position.col, joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en haut à gauche");
-      wrefresh(fenetre);
-    };
+    deplacementSuivantCol = joueur->position->col - 1;
+    deplacementSuivantRow = joueur->position->row - 1;
+    if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
+      joueur->position->col -= 1;
+      joueur->position->row -= 1;      
+      deplacerJoueur(carte, joueur, ancienRow, ancienCol);
+    }
     break;
 
   case PAVE_BAS_DROIT:
-    if (deplacementValide(mat, input, joueur)) {
-      joueur.position.col += 1;
-      joueur.position.row += 1;
-      printf("row = %d and col = %d", joueur.position.col, joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en bas à droite");
-      wrefresh(fenetre);
-    };
+    deplacementSuivantCol = joueur->position->col + 1;
+    deplacementSuivantRow = joueur->position->row + 1;
+    if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
+      joueur->position->col += 1;
+      joueur->position->row += 1;      
+      deplacerJoueur(carte, joueur, ancienRow, ancienCol);
+    }
     break;
 
   case PAVE_BAS_GAUCHE:
-    if (deplacementValide(mat, input, joueur)) {
-      joueur.position.col -= 1;
-      joueur.position.row += 1;
-      printf("row = %d and col = %d", joueur.position.col, joueur.position.col);
-      redessinerFenetre(fenetre);
-      mvwprintw(fenetre, 10, 25, "Tu te déplaces en bas à gauche");
-      wrefresh(fenetre);
-    };
-    break;
+    deplacementSuivantCol = joueur->position->col - 1;
+    deplacementSuivantRow = joueur->position->row + 1;
+    if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
+      joueur->position->col -= 1;
+      joueur->position->row += 1;      
+      deplacerJoueur(carte, joueur, ancienRow, ancienCol);
+    }
     break;
 
   default:
-    redessinerFenetre(fenetre);
-    mvwprintw(fenetre, 10, 15, "Erreur, choisissez une bonne direction");
-    wrefresh(fenetre);
     break;
   }
 };

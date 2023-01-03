@@ -1,15 +1,13 @@
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
-#include <ncurses.h>  
 #include "position.h"
-#include "generation.h"
+typedef struct Joueur* ptrJoueur;
+typedef struct Joueur joueur;
 
+struct Joueur {
+    ptrPosition position;
+    int energie;
+};
 
-typedef struct Joueur {
-    Position position;
-    int Energie;
-
-} Joueur;
-
-void afficheGrilleNcurses(WINDOW* fenetre, ptrSection** mat, int taille);
+ptrJoueur initPlayer();

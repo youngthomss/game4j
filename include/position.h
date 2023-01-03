@@ -1,8 +1,13 @@
-#ifndef HEADER_POSITION
-#define HEADER_POSITION
+#pragma once
+#include <stdlib.h>
 
-typedef struct position {
-    int     row;
-    int     col;
-    } Position;
-#endif
+typedef struct Position* ptrPosition;
+typedef struct Position position;
+
+
+struct Position {
+    int row;
+    int col;
+};
+
+ptrPosition creerPosition();
