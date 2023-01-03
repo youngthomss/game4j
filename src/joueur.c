@@ -8,7 +8,7 @@
 
 
 void initPlayer(Joueur joueur) {
-  joueur.position.row = 0;
+  joueur.position.row = 0; 
   joueur.position.col = 0;
   joueur.Energie = 50;
 }
