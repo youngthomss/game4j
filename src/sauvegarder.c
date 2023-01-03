@@ -1,3 +1,12 @@
+/**
+ * \file sauvegarde.c
+ * \brief Gestion de la sauvegarde
+ * \author Thibault
+ *
+ * Programme pour la gestion de la sauvegarde
+ *
+ */
+
 #include "sauvegarder.h"
 #include <stdio.h>
 #include <stdlib.h>
