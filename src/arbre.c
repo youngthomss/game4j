@@ -1,5 +1,5 @@
 #include "arbre.h"
-#include"string.h"
+#include "string.h"
 #include "time.h"
 
 int convertCaseToInt(int x, int y, int taille){

@@ -1,8 +1,6 @@
-#ifndef CHARGEMENT_H
-#define CHARGEMENT_H
+#pragma once
+#include "commons.h"
 
-#include <stdio.h>
-#include <stdlib.h>
 
 /* Structure Partie:  permet de stocker les paramètres d'une partie           */
 typedef struct partie {
@@ -11,5 +9,3 @@ typedef struct partie {
     Joueur     joueur; // la position de Pacman dans le plateau
     int     nbbonus; // le nombre de bonus dispo sur le terrain
     } Partie;
-
-#endif

@@ -1,72 +1,54 @@
-#include "../include/arbre.h"
-#include "../include/generation.h"
-#include "../include/sauvegarder.h"
-#include "../include/section.h"
-#include "../include/deplacement.h"
-#include "../include/joueur.h"
-#include <stdio.h>
-#include <stdlib.h>
-/*
-Affichage pour les tests
-Sections à ajouter dans une grille
-*/
-
-void afficherSection(ptrSection section) {
-  printf("x = %d\n", section->x);
-  printf("y = %d\n", section->y);
-}
+#include "arbre.h"
+#include "deplacement.h"
+#include "generation.h"
+#include "joueur.h"
+#include "sauvegarder.h"
+#include "section.h"
+#include "carte.h"
 
 
 int main() {
-  // /*Générations*/
+  /*Générations*/
+  printf("\nTaille de la carte : ");
+  int taille;
+  scanf("%d", &taille);
+  ptrSection **carte;
+  carte = genererMat(taille);
+  terrainMatrice(carte, taille);
+  clear();
 
-  // ptrSection s = creerSection(2, 2);
-  // printf("\ntaille de la carte : ");
-  // int taille;
-  // scanf("%d", &taille);
-  // ptrSection **carte;
-  // carte = genererMat(taille);
-  // terrainMatrice(carte, taille);
-  // afficheGrille(carte, taille);
-  // int **test = construireMatrice(carte, taille);
-  // int t2 = taille * taille;
-  // afficherMatriceV2(construireMatrice(carte, taille), t2);
+  /*Sauvegarde*/
 
-  // /*Sauvegarde*/
+  /* */
+  int deplacement;
+  bool quit = false;
+  ptrJoueur j = initPlayer(taille);
+  while (!quit) {
+    afficherInstructions();
+    afficher(carte, taille, j);
+    printf("Entrez votre déplacement : ");
+    scanf("%d", &deplacement);
+    traiterDeplacement(carte, deplacement, j, taille);
+    clear();
 
-  // partie jeu;
-  // // NomSauvegarde(jeu.chemin);
-  // // printf("%s\n",jeu.chemin);
-  // nouvellePartie(jeu.nomPartie, jeu.chemin);
-  // printf("%s\n", jeu.chemin);
-  // ptrSection **cartetest = genererMat(taille);
-  // int **arbretest = construireMatrice(carte, taille);
-  // // CreerFichierSauvegarde(jeu, carte, test, taille);
-  // // ouvrirFichier(jeu, cartetest, arbretest, taille);
-  // afficheGrille(cartetest, taille);
-  // afficherMatriceV2(arbretest, t2);
-  // initStructureFenetre();
-  WINDOW *fenetre = creerFenetre(LONGUEUR, LARGEUR, X, Y);
-  // keypad(fenetre, TRUE);
-  // // nodelay(fenetre, TRUE); //pour eviter de bloquer la fenetre en attendant
-  // // qu'une touche sois entrée
-  // int i = 0;
-  // Joueur j;
-  // j.position.row = 0;
-  // j.position.col = 0;
-  // while (i == 0) {
-  //   int input = wgetch(fenetre);
-  //   traiterDeplacement(fenetre, input, carte, j);
-  // }
-  ptrSection** m1;
-  m1= genererMat(18);
-  terrainMatrice(m1, 18);
-  initStructureFenetre();
-  creerFenetre(20, 50, 10, 20);
-  afficheGrilleNcurses(fenetre,m1,18);
-  wrefresh(fenetre);
-  getch();
-  endwin();
+    // Le joueur est sur la dernière case
+    if (carte[taille-1][taille-1]->terrain == 2) {
+      printf("\033[0;32mVous avez gagné !\033[0m\n");
+      quit = !quit;
+    }
 
+    // Le joueur n'a plus d'énergie
+    if (j->energie == 0) {
+      printf("\033[0;31mVous n'avez plus d'énergie, c'est la fin !\033[0m\n");
+      quit = !quit;
+    }
+
+    // Le joueur quitte la partie
+    if (deplacement == 5) {
+      printf("\033[0;31mVous avez quitté la partie :(\033[0m\n");
+      quit = !quit;
+    }
+  }
+  afficher(carte, taille, j);
   return 0;
 }

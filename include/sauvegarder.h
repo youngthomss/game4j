@@ -1,6 +1,5 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
+#include "commons.h"
 #include "generation.h"
 #include "section.h"
 #include "arbre.h"

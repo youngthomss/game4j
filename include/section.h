@@ -1,6 +1,6 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
+#include "commons.h"
+
 typedef struct Section section;
 typedef struct Section* ptrSection;
 

@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
 #pragma once
+#include "commons.h"
 #include "section.h"
 
 ptrSection** genererMat(int taille);

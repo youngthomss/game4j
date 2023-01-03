@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/generation.h"
+#include "generation.h"
 
 ptrSection** genererMat(int taille){
     ptrSection** mat = (ptrSection**)malloc(taille*sizeof*mat);
@@ -27,7 +27,7 @@ void terrainMatrice(ptrSection** mat, int taille){
                 mat[i][j]->terrain = 1; //Bonus   
         }
     }
-    mat[0][0]->terrain=0;
+    mat[0][0]->terrain=2; // Joueur
     mat[taille-1][taille-1]->terrain=0;
 }
 
