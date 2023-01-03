@@ -1,2 +1,12 @@
-# game4j
-game4j est un projet universitaire
+# La tortue perdue
+Aidez la tortue perdue à rentrer chez elle !
+
+## Compiler
+```
+make
+```
+
+## Exécuter
+```
+make run
+```
