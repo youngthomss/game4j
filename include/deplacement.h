@@ -3,7 +3,6 @@
 #include "joueur.h"
 #include "section.h"
 
-
 enum direction {
   HAUTE = 8,
   DROITE = 6,
@@ -15,7 +14,9 @@ enum direction {
   BASSE_GAUCHE = 1
 };
 
-
-bool deplacementValide(ptrSection **carte, int deplacementSuivantRow, int deplacementSuivantCol, int taille);
-void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, int taille);
-void deplacerJoueur(ptrSection **carte, ptrJoueur joueur, int ancienRow, int ancienCol);
+bool deplacementValide(ptrSection **carte, int deplacementSuivantRow,
+                       int deplacementSuivantCol, int taille);
+void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur,
+                        int taille);
+void deplacerJoueur(ptrSection **carte, ptrJoueur joueur, int ancienRow,
+                    int ancienCol);

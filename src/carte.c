@@ -1,6 +1,5 @@
 #include "carte.h"
 
-
 void afficherCarte(ptrSection **carte, int taille) {
   printf("┌");
   for (int i = 0; i < taille; i++)
@@ -42,12 +41,9 @@ void afficher(ptrSection **carte, int taille, ptrJoueur j) {
 }
 
 void afficherInstructions() {
-    printf("\033[0;32mUtilisez votre pavé numérique pour vous déplacer !\n");
-    printf(
-        " 7   8   9\n   ↖ ↑ ↗\n 4 ←   → 6\n   ↙ ↓ ↘\n 1   2   3\n");
-    printf("5 pour quitter la partie.\033[0m\n");
+  printf("\033[0;32mUtilisez votre pavé numérique pour vous déplacer !\n");
+  printf(" 7   8   9\n   ↖ ↑ ↗\n 4 ←   → 6\n   ↙ ↓ ↘\n 1   2   3\n");
+  printf("5 pour quitter la partie.\033[0m\n");
 }
 
-void clear() {
-    printf("\e[1;1H\e[2J");
-}
+void clear() { printf("\e[1;1H\e[2J"); }

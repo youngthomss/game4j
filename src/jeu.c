@@ -1,11 +1,10 @@
 #include "arbre.h"
+#include "carte.h"
 #include "deplacement.h"
 #include "generation.h"
 #include "joueur.h"
 #include "sauvegarder.h"
 #include "section.h"
-#include "carte.h"
-
 
 int main() {
   /*Générations*/
@@ -32,7 +31,7 @@ int main() {
     clear();
 
     // Le joueur est sur la dernière case
-    if (carte[taille-1][taille-1]->terrain == 2) {
+    if (carte[taille - 1][taille - 1]->terrain == 2) {
       printf("\033[0;32mVous avez gagné !\033[0m\n");
       quit = !quit;
     }

@@ -1,7 +1,7 @@
 #pragma once
 #include "commons.h"
-#include "section.h"
 #include "joueur.h"
+#include "section.h"
 
 void afficherInstructions();
 void afficherCarte(ptrSection **carte, int taille);
