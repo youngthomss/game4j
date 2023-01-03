@@ -2,18 +2,15 @@
 
 bool deplacementValide(ptrSection **carte, int deplacementSuivantRow, int deplacementSuivantCol, int taille) {
   if (deplacementSuivantRow < taille && deplacementSuivantCol < taille && deplacementSuivantRow >= 0 && deplacementSuivantCol >= 0) {
-    if (carte[deplacementSuivantRow][deplacementSuivantCol]->terrain != -1) {
-      return true;
+      return (carte[deplacementSuivantRow][deplacementSuivantCol]->terrain != -1);
     }
-  }
   return false;
 }
 
 void deplacerJoueur(ptrSection **carte, ptrJoueur joueur, int ancienRow, int ancienCol) {
-  carte[ancienRow][ancienCol]->terrain = 0;
+  carte[ancienRow][ancienCol]->terrain = -2;
   if (carte[joueur->position->row][joueur->position->col]->terrain == 1) {
     joueur->energie += 2;
-    printf("Bonus : +1 énergie !\n");
   }
 
   carte[joueur->position->row][joueur->position->col]->terrain = 2;
@@ -28,7 +25,7 @@ void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, i
 
   switch (deplacement) {
 
-  case PAVE_HAUT:
+  case HAUTE:
     deplacementSuivantCol = joueur->position->col;
     deplacementSuivantRow = joueur->position->row - 1;
     if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
@@ -37,7 +34,7 @@ void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, i
     }
     break;
 
-  case PAVE_DROIT:
+  case DROITE:
     deplacementSuivantCol = joueur->position->col + 1;
     deplacementSuivantRow = joueur->position->row;
     if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
@@ -46,7 +43,7 @@ void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, i
     }
     break;
 
-  case PAVE_BAS:
+  case BASSE:
     deplacementSuivantCol = joueur->position->col;
     deplacementSuivantRow = joueur->position->row + 1;
     if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
@@ -55,7 +52,7 @@ void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, i
     }
     break;
 
-  case PAVE_GAUCHE:
+  case GAUCHE:
     deplacementSuivantCol = joueur->position->col -1;
     deplacementSuivantRow = joueur->position->row;
     if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
@@ -64,7 +61,7 @@ void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, i
     }
     break;
 
-  case PAVE_HAUT_DROIT:
+  case HAUTE_DROITE:
     deplacementSuivantCol = joueur->position->col + 1;
     deplacementSuivantRow = joueur->position->row - 1;
     if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
@@ -74,7 +71,7 @@ void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, i
     }
     break;
 
-  case PAVE_HAUT_GAUCHE:
+  case HAUTE_GAUCHE:
     deplacementSuivantCol = joueur->position->col - 1;
     deplacementSuivantRow = joueur->position->row - 1;
     if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
@@ -84,7 +81,7 @@ void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, i
     }
     break;
 
-  case PAVE_BAS_DROIT:
+  case BASSE_DROITE:
     deplacementSuivantCol = joueur->position->col + 1;
     deplacementSuivantRow = joueur->position->row + 1;
     if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {
@@ -94,7 +91,7 @@ void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, i
     }
     break;
 
-  case PAVE_BAS_GAUCHE:
+  case BASSE_GAUCHE:
     deplacementSuivantCol = joueur->position->col - 1;
     deplacementSuivantRow = joueur->position->row + 1;
     if (deplacementValide(carte, deplacementSuivantRow, deplacementSuivantCol, taille)) {

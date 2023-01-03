@@ -1,11 +1,11 @@
 #include "joueur.h"
 
 
-ptrJoueur initPlayer() {
+ptrJoueur initPlayer(int energie) {
   int size = sizeof(joueur);
   ptrJoueur j = malloc(size);
   j->position = creerPosition();
-  j->energie = 50;
+  j->energie = energie;
 
   return j;
 }

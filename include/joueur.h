@@ -1,6 +1,5 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
+#include "commons.h"
 #include "position.h"
 typedef struct Joueur* ptrJoueur;
 typedef struct Joueur joueur;
@@ -10,4 +9,4 @@ struct Joueur {
     int energie;
 };
 
-ptrJoueur initPlayer();
+ptrJoueur initPlayer(int energie);

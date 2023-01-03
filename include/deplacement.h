@@ -1,21 +1,18 @@
 #pragma once
-
+#include "commons.h"
 #include "joueur.h"
 #include "section.h"
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 
 enum direction {
-  PAVE_HAUT = 8,
-  PAVE_DROIT = 6,
-  PAVE_BAS = 2,
-  PAVE_GAUCHE = 4,
-  PAVE_HAUT_DROIT = 9,
-  PAVE_HAUT_GAUCHE = 7,
-  PAVE_BAS_DROIT = 3,
-  PAVE_BAS_GAUCHE = 1
+  HAUTE = 8,
+  DROITE = 6,
+  BASSE = 2,
+  GAUCHE = 4,
+  HAUTE_DROITE = 9,
+  HAUTE_GAUCHE = 7,
+  BASSE_DROITE = 3,
+  BASSE_GAUCHE = 1
 };
 
 
