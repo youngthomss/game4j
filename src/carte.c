@@ -41,7 +41,7 @@ void afficher(ptrSection **carte, int taille, ptrJoueur j) {
 }
 
 void afficherInstructions() {
-  printf("\033[0;32mUtilisez votre pavé numérique pour vous déplacer !\n");
+  printf("\033[0;32m\nUtilisez votre pavé numérique pour vous déplacer !\n");
   printf(" 7   8   9\n   ↖ ↑ ↗\n 4 ←   → 6\n   ↙ ↓ ↘\n 1   2   3\n");
   printf("5 pour quitter la partie.\033[0m\n");
 }
