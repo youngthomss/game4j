@@ -1,5 +1,23 @@
+/**
+ * \file deplacement.c
+ * \brief Gestion du deplacement du joueur
+ * \author Thomas Tom Julian Aniss
+ *
+ * Programme pour la gestion du deplacement du joueur
+ *
+ */
+
 #include "deplacement.h"
 
+/**
+ * \fn deplacementValide(ptrSection **carte, int deplacementSuivantRow, int deplacementSuivantCol, int taille)
+ * \brief Fonction de verification d'un deplacement valide
+ * \param carte  Une matrice correspondant à la carte.
+ * \param deplacementSuivantRow  Correspond au deplacement suivant sur les lignes
+ * \param deplacementSuivantCol  Correspond au deplacement suivant sur les colonnes
+ * \param taille La Taille de la matrice.
+ * \return un booleen.
+ */
 bool deplacementValide(ptrSection **carte, int deplacementSuivantRow,
                        int deplacementSuivantCol, int taille) {
   if (deplacementSuivantRow < taille && deplacementSuivantCol < taille &&
@@ -9,6 +27,14 @@ bool deplacementValide(ptrSection **carte, int deplacementSuivantRow,
   return false;
 }
 
+/**
+ * \fn deplacerJoueur(ptrSection **carte, ptrJoueur joueur, int ancienRow, int ancienCol)
+ * \brief Fonction de deplacement d'un joueur
+ * \param carte  Une matrice correspondant à la carte.
+ * \param ancienRow  Correspond a l'ancien deplacement sur les lignes
+ * \param ancienCol  Correspond a l'ancien deplacement sur les colonnes
+ * \return void
+ */
 void deplacerJoueur(ptrSection **carte, ptrJoueur joueur, int ancienRow,
                     int ancienCol) {
   carte[ancienRow][ancienCol]->terrain = -2;
@@ -20,6 +46,15 @@ void deplacerJoueur(ptrSection **carte, ptrJoueur joueur, int ancienRow,
   joueur->energie -= 1;
 }
 
+/**
+ * \fn traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur, int taille)
+ * \brief Fonction de traitement du deplacement d'un joueur
+ * \param carte  Une matrice correspondant à la carte.
+ * \param deplacement  Correspond a un input de l'utilisateur
+ * \param joueur  Correspond a un pointeur sur un Joueur
+ * \param taille La Taille de la matrice.
+ * \return void
+ */
 void traiterDeplacement(ptrSection **carte, int deplacement, ptrJoueur joueur,
                         int taille) {
   int ancienRow = joueur->position->row;

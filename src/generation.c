@@ -1,8 +1,23 @@
+/**
+ * \file generation.c
+ * \brief Gestion des matrices
+ * \author Thibault
+ *
+ * Programme pour la gestion des matrices
+ *
+ */
+
 #include "generation.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-ptrSection **genererMat(int taille) {
+/**
+ * \fn **genererMat(int taille)
+ * \brief Fonction de generation d'une matrice
+ * \param taille La Taille de la matrice.
+ * \return ptrSection
+ */
+ ptrSection **genererMat(int taille) {
   ptrSection **mat = (ptrSection **)malloc(taille * sizeof *mat);
   for (int i = 0; i < taille; i++) {
     mat[i] = (ptrSection *)malloc(taille * sizeof(mat[i]));
@@ -12,6 +27,13 @@ ptrSection **genererMat(int taille) {
   return mat;
 }
 
+/**
+ * \fn terrainMatrice(ptrSection **mat, int taille)
+ * \brief Fonction de remplissage d'une matrice
+ * \param mat Une matrice.
+ * \param taille La Taille de la matrice.
+ * \return void
+ */
 void terrainMatrice(ptrSection **mat, int taille) {
   srand(time(NULL));
   int chance;
@@ -32,6 +54,13 @@ void terrainMatrice(ptrSection **mat, int taille) {
   mat[taille - 1][taille - 1]->terrain = 0;
 }
 
+/**
+ * \fn afficheGrille(ptrSection **mat, int taille)
+ * \brief Fonction d'affichage  d'une matrice
+ * \param mat Une matrice.
+ * \param taille La Taille de la matrice.
+ * \return void
+ */
 void afficheGrille(ptrSection **mat, int taille) {
   for (int i = 0; i < taille; i++) {
     for (int j = 0; j < taille; j++) {
