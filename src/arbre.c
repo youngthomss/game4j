@@ -8,7 +8,6 @@
  */
 
 #include "arbre.h"
-#include "string.h"
 
 /**
  * \fn convertCaseToInt(int x, int y, int taille)
@@ -21,13 +20,13 @@
 int convertCaseToInt(int x, int y, int taille) { return x * taille + y; }
 
 /**
- * \fn afficherMatriceV2(int **mat, int taille1)
+ * \fn afficherMatriceAdjacente(int **mat, int taille1)
  * \brief Fonction d'affichage de matrice
  * \param mat Une matrice.
  * \param taille La Taille de la matrice.
  * \return void
  */
-void afficherMatriceV2(int **mat, int taille1) {
+void afficherMatriceAdjacente(int **mat, int taille1) {
   for (int i = 0; i < taille1; i++) {
     for (int j = 0; j < taille1; j++) {
       printf("%d ", mat[i][j]);
@@ -56,19 +55,19 @@ void creerDistance(ptrSection case1, ptrSection case2, int **mat, int taille) {
 }
 
 /**
- * \fn **genererMatrice(int taille1)
+ * \fn **genererMatriceVide(int taille1)
  * \brief Fonction de création d'une matrice.
  * \param taille La Taille de la matrice.
  * \return une matrice
  */
-int **genererMatrice(int taille1) {
+int **genererMatriceVide(int taille) {
   srand(time(NULL));
-  int **matrice = malloc(sizeof(int) * taille1 * taille1);
-  for (int i = 0; i < taille1; i++) {
-    matrice[i] = malloc(sizeof(int) * taille1);
+  int **matrice = malloc(sizeof(int) * taille * taille);
+  for (int i = 0; i < taille; i++) {
+    matrice[i] = malloc(sizeof(int) * taille);
   }
-  for (int i = 0; i < taille1; i++) {
-    for (int j = 0; j < taille1; j++) {
+  for (int i = 0; i < taille; i++) {
+    for (int j = 0; j < taille; j++) {
       matrice[i][j] = 0;
     }
   }
@@ -76,15 +75,15 @@ int **genererMatrice(int taille1) {
 }
 
 /**
- * \fn **construireMatrice(ptrSection **matrice, int taille)
+ * \fn **genererMatriceAdjacente(ptrSection **matrice, int taille)
  * \brief Fonction de construction d'une matrice.
  * \param mat Une matrice.
  * \param taille La Taille de la matrice.
  * \return une matrice.
  */
- int **construireMatrice(ptrSection **matrice, int taille) {
+int **genererMatriceAdjacente(ptrSection **matrice, int taille) {
   int taille_mat = taille * taille;
-  int **mat = genererMatrice(taille_mat);
+  int **mat = genererMatriceVide(taille_mat);
   for (int i = 0; i < taille; i++) {
     for (int j = 0; j < taille; j++) {
       if (matrice[i][j]->terrain != -1) {
